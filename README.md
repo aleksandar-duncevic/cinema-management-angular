@@ -1,60 +1,60 @@
-# Bioskop
+# Cinema Management Web Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+A client-side web application for managing cinema data such as movies, screenings, and tickets.  
+This project was developed as part of a university course to practice modern frontend development using Angular and REST APIs.
 
-## Development server
+The application demonstrates how to build a structured single-page application (SPA) using Angular’s component-based architecture.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## Technologies Used
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Angular
+- TypeScript
+- HTML5
+- CSS3
+- REST API
+- Angular CLI
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Features
 
-```bash
-ng generate component component-name
-```
+- Display a list of available movies
+- View detailed movie information
+- Manage cinema screenings
+- Interactive UI built with Angular components
+- Communication with backend services through HTTP requests
+- Component-based frontend architecture
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## Project Structure
 
-## Building
+The application follows Angular best practices and is organized into modules and components.
 
-To build the project run:
+- **Components** – UI elements and views  
+- **Services** – API communication and data logic  
+- **Models** – TypeScript interfaces for application data  
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Purpose of the Project
 
-## Running unit tests
+This project was created to practice:
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- Angular framework fundamentals
+- Component-based frontend architecture
+- Working with REST APIs
+- Structuring modern web applications
+- Building interactive user interfaces
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
+## Author
 
-For end-to-end (e2e) testing, run:
+**Aleksandar Duncevic**  
+Software and Information Engineering student  
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-"# bioskop" 
+GitHub:  
+https://github.com/aleksandar-duncevic
