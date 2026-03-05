@@ -1,0 +1,80 @@
+<div class="details-container">
+    <mat-card class="details-card">
+      <mat-card-header>
+        <mat-card-title>{{ movie.title }}</mat-card-title>
+        <mat-card-subtitle>Režiser: {{ movie.director?.name }}</mat-card-subtitle>
+      </mat-card-header>
+      
+      <img mat-card-image [src]="movie.poster" alt="{{ movie.title }} poster" class="details-poster">
+      
+      <mat-card-content>
+        <p class="movie-description">{{ movie.description }}</p>
+        <p>
+          <strong>Žanrovi: </strong> {{ getGenresList(movie.movieGenres) }}
+        </p>
+        <p>
+          <strong>Glumci: </strong> {{ getActorsList(movie.movieActors) }}
+        </p>
+        <p><strong>Trajanje:</strong> {{ movie.runTime }} min</p>
+        <p><strong>Prvo prikazivanje:</strong> {{ movie.startDate | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Ocena:</strong> {{ rating + '/ 10' || '/' }}</p>
+      </mat-card-content>
+
+      <!-- Dugme za otvaranje forme za rezervaciju projekcije -->
+    <mat-card-actions>
+      <button mat-button color="accent" (click)="toggleReservationForm()">
+        <i class="fa-solid fa-ticket"></i> Rezerviši projekciju
+      </button>
+    </mat-card-actions>
+
+    <!-- Skrivena forma za rezervaciju projekcije -->
+    <div *ngIf="reservationVisible" class="reservation-form" style="padding: 16px;">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Datum projekcije</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="Odaberite datum" [(ngModel)]="reservationDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Vreme projekcije</mat-label>
+        <mat-select [(ngModel)]="reservationTime">
+          <mat-option *ngFor="let time of availableTimes" [value]="time">
+            {{ time }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Količina</mat-label>
+        <input matInput type="number" placeholder="Unesite broj karata" [(ngModel)]="ticketVolume" (input)="calculateTotalPrice()">
+      </mat-form-field>
+      <p><strong>Cena karte:</strong> 99 din</p>
+      <p><strong>Ukupna cena:</strong> {{ totalPrice }} din</p>
+      <div class="reservation-actions" style="margin-top: 10px; text-align: right;">
+        <button mat-button color="primary" (click)="confirmReservation()">
+          Potvrdi rezervaciju
+        </button>
+      </div>
+    </div>
+
+    <mat-card-actions style="margin-top: 15px;">
+      <mat-checkbox [(ngModel)]="watched" (change)="onWatchedChange()">
+        Odgledano
+      </mat-checkbox>
+    </mat-card-actions>
+    <mat-card-actions>
+      <div *ngIf="watched" class="user-rating-container">
+        <p>Vaša ocena:</p>
+        <span *ngFor="let star of stars; let i = index" (click)="setUserRating(i + 1)"
+              [ngClass]="{'active': (i + 1) <= userRating}">
+          <mat-icon>star</mat-icon>
+        </span>
+        <span *ngIf="userRating">({{ userRating }}/10)</span>
+      </div>
+    </mat-card-actions>
+
+      <mat-card-actions>
+        <button mat-button color="primary" routerLink="/" style="margin-left: 12px;">Nazad</button>
+      </mat-card-actions>
+    </mat-card>
+</div>
+  

@@ -1,0 +1,24 @@
+<mat-card class="auth-card" style="margin-top: 50px;">
+    <mat-card-header>
+        <mat-card-title>Prijavi se</mat-card-title>
+    </mat-card-header>
+    <mat-card-content style="margin-top: 15px;">
+        <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="Unesite email..." [(ngModel)]="email">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Lozinka</mat-label>
+            <input type="password" matInput placeholder="Unesite lozinku..." [(ngModel)]="password">
+        </mat-form-field>
+        <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+    </mat-card-content>
+    <mat-card-actions class="auth-actions">
+        <button mat-button color="primary" (click)="doLogin()">
+            <i class="fa-solid fa-right-to-bracket"></i> Prijavi se
+        </button>
+        <a mat-button routerLink="/signup" color="accent">
+            <i class="fa-solid fa-user-plus"></i> Napravi nalog
+        </a>
+    </mat-card-actions>
+</mat-card>

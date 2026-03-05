@@ -1,0 +1,51 @@
+<mat-card class="auth-card">
+    <mat-card-header>
+        <h1>Registracija</h1>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="Unesite email adresu" [(ngModel)]="email">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Ime</mat-label>
+            <input type="text" matInput placeholder="Unesite ime" [(ngModel)]="firstName">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Prezime</mat-label>
+            <input type="text" matInput placeholder="Unesite prezime" [(ngModel)]="lastName">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Broj telefona</mat-label>
+            <input type="tel" matInput placeholder="Unesite broj telefona" [(ngModel)]="phone">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Adresa</mat-label>
+            <input type="text" matInput placeholder="Unesite adresu" [(ngModel)]="address">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Lozinka</mat-label>
+            <input type="password" matInput placeholder="Unesite lozinku" [(ngModel)]="password">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Ponovite lozinku</mat-label>
+            <input type="password" matInput placeholder="Ponovite lozinku" [(ngModel)]="repeatPassword">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Omiljeni žanr</mat-label>
+            <mat-select [(ngModel)]="genre">
+                <mat-option *ngFor="let genre of genres" [value]="genre.name">
+                    {{genre.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+        <button type="button" mat-button (click)="doSignup()">
+            <i class="fa-solid fa-right-to-bracket"></i> Registruj se
+        </button>
+        <a mat-button routerLink="/login">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Već imam nalog
+        </a>
+    </mat-card-actions>
+</mat-card>

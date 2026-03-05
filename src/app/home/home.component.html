@@ -1,0 +1,59 @@
+<div class="main">
+<button class="toggle-btn" (click)="isSearchVisible = !isSearchVisible" style="margin-left: 44px;">
+  {{ isSearchVisible ? 'Sakrij pretragu' : 'Prikaži pretragu' }}
+</button>
+
+<!-- Pretraga će biti prikazana samo ako je isSearchVisible true -->
+<div *ngIf="isSearchVisible" class="container">
+  <h2 class="heading">Pretraga filmova</h2>
+    
+  <div class="search-container">
+    <input type="text" matInput placeholder="Ime filma" (keyup)="doFilterChain()" [(ngModel)]="userInput">
+    <input type="text" matInput placeholder="Glumac" (keyup)="doFilterChain()" [(ngModel)]="actor">
+    <select (change)="onGenreChange($event)">
+      <option value="">-- Izaberi žanr --</option>
+      <option *ngFor="let g of genres" [value]="g.name">{{ g.name }}</option>
+    </select>
+    <input type="text" matInput placeholder="Režiser" (keyup)="doFilterChain()" [(ngModel)]="director">
+    <input type="number" placeholder="Dužina" (keyup)="doFilterChain()" [(ngModel)]="runtime">
+    <button (click)="onSearch()">Pretraga</button>
+  </div>
+</div>
+<div>
+
+<!-- Prikaz "Nema rezultata" ako nema filmova -->
+<div *ngIf="movies.length === 0">
+  <p>Nema rezultata</p>
+</div>
+
+<!-- Ako ima filmova, prikaži listu -->
+<div *ngIf="movies.length > 0">
+  <div class="movie-list">
+    <!-- Ako postoji filter, koristi filteredMovies, inače movies -->
+    <mat-card *ngFor="let movie of (filteredMovies.length > 0 ? filteredMovies : movies)" class="movie-card">
+      <mat-card-header>
+        <mat-card-title>{{ movie.title }}</mat-card-title>
+        <mat-card-subtitle style="color: #2e2e2e;">{{ movie.director?.name }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image 
+           [src]="movie.poster" 
+           alt="{{ movie.title }} poster" 
+           (click)="openMovieDetails(movie.shortUrl)" 
+           style="cursor: pointer;">
+      <mat-card-content>
+        <p class="movie-description">{{ movie.shortDescription }}</p>
+        <p>
+          <strong>Žanrovi: </strong> {{ getGenresList(movie.movieGenres) }}
+        </p>
+        <p><strong>Trajanje:</strong> {{ movie.runTime }} min</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" (click)="openMovieDetails(movie.shortUrl)">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Detalji
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+</div>
+</div>

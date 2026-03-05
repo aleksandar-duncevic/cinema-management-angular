@@ -1,0 +1,74 @@
+.auth-card {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 24px;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: left;
+  }
+  
+  .auth-card h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  
+  mat-card-actions button,
+  mat-card-actions a {
+    flex: 1 1 auto;
+    margin: 5px;
+    text-align: center;
+  }
+  
+  /* Stilizacija dugmeta za registraciju */
+  mat-card-actions button {
+    background-color: #3f51b5;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 0;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  mat-card-actions button:hover {
+    background-color: #303f9f;
+  }
+  
+  /* Stilizacija linka za login */
+  mat-card-actions a {
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #3f51b5;
+    border: 2px solid #3f51b5;
+    border-radius: 4px;
+    padding: 10px 0;
+    transition: all 0.3s ease;
+  }
+  
+  mat-card-actions a:hover {
+    background-color: #3f51b5;
+    color: #fff;
+  }
+  

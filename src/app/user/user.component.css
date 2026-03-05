@@ -1,0 +1,104 @@
+
+/* Kontejner koji centrirano drži sadržaj */
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+  
+  /* Stilizacija korisničke kartice */
+  .user-card {
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+    padding: 16px;
+    border-radius: 8px;
+    /* Ako koristiš appearance="outlined", Angular Material već dodaje ivice */
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Avatar slika u zaglavlju */
+  .example-header-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  /* Uklanjanje default margina iz elemenata unutar mat-card-subtitle */
+  .no-border {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Dodatni razmak ispod sadržaja kartice */
+  .user-card-content {
+    margin-top: 16px;
+  }
+  
+  /* Kartica za poruku kada nema porudžbina */
+  .no-order {
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Stil za link u poruci (npr. cyan boja) */
+  a.cyan {
+    color: #00bcd4;
+    text-decoration: none;
+  }
+  
+  a.cyan:hover {
+    text-decoration: underline;
+  }
+  
+  /* Tabela porudžbina */
+  table.mat-elevation-z8 {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  
+  /* Stilizacija zaglavlja tabele */
+  table.mat-elevation-z8 th {
+    background-color: #f1f1f1;
+    padding: 8px;
+    font-weight: bold;
+  }
+  
+  /* Stilizacija ćelija tabele */
+  table.mat-elevation-z8 td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Stil za akcije unutar tabele */
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .full-width {
+    width: 70%;
+  }
+  
+  /* Responsivni stilovi */
+  @media screen and (max-width: 768px) {
+    .user-card, .no-order {
+      max-width: 90%;
+    }
+  }
+
+  th.mat-header-cell, td.mat-cell {
+    text-align: center;
+  }
+
+  .center-text {
+    text-align: center;
+  }

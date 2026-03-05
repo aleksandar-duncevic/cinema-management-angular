@@ -1,0 +1,74 @@
+app-details {
+  background-color: white;
+}
+
+.details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    margin-top: 100px;
+  }
+  
+  .details-card {
+    max-width: 600px;
+    width: 90%;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .details-poster {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .movie-description {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .user-rating-container {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    padding-left: 12px;
+  }
+  
+  .user-rating-container p {
+    margin: 0 10px 0 0;
+  }
+  
+  .user-rating-container span {
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .user-rating-container span:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Stil za aktivne (kliknute) zvezdice */
+  .user-rating-container .active mat-icon {
+    color: gold;
+  }
+  
+  .reservation-form {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin: 16px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .reservation-form .full-width {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  

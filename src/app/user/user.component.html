@@ -1,0 +1,138 @@
+<div class="wrapper" *ngIf="user">
+    <!-- Korisnička kartica sa osnovnim podacima -->
+    <mat-card class="user-card" appearance="outlined">
+      <mat-card-header>
+        <img mat-card-avatar class="example-header-image" [src]="'https://ui-avatars.com/api/?name=' + user.email">
+        <mat-card-title>{{ user.firstName }} {{ user.lastName }}</mat-card-title>
+        <mat-card-subtitle>
+          <p class="no-border">Ukupno porudžbina: {{ user.orders.length }}</p>
+          <p class="no-border">Omiljeni žanr: {{ user.favouriteGenre }}</p>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="user-card-content">
+        <mat-accordion multi>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <i class="fa-solid fa-key"></i>&nbsp;Promena lozinke
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+            <mat-form-field class="full-width">
+              <mat-label>Stara lozinka</mat-label>
+              <input matInput type="password" [(ngModel)]="oldPasswordValue">
+            </mat-form-field>
+            </div>
+            <div>
+            <mat-form-field class="full-width">
+              <mat-label>Nova lozinka</mat-label>
+              <input matInput type="password" [(ngModel)]="newPasswordValue">
+            </mat-form-field>
+            </div>
+            <div>
+            <mat-form-field class="full-width">
+              <mat-label>Ponovite lozinku</mat-label>
+              <input matInput type="password" [(ngModel)]="repeatPasswordValue">
+            </mat-form-field>
+            </div>
+            <div>
+            <button mat-button color="primary" (click)="doChangePassword()">
+              Potvrdi
+            </button>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-card-content>
+    </mat-card>
+  
+    <!-- Poruka ako korisnik nema porudžbina -->
+    <mat-card appearance="outlined" *ngIf="user.orders.length === 0" class="no-order">
+      <mat-card-content>
+        <h1>Trenutno nemate rezervisanih projekcija!</h1>
+        <p>Za rezervisanje posetite <a routerLink="" class="cyan">početnu stranicu</a></p>
+      </mat-card-content>
+    </mat-card>
+  
+    <!-- Tabela sa porudžbinama -->
+    <div *ngIf="user.orders.length > 0">
+      <h1>Lista porudžbina</h1>
+      <table mat-table [dataSource]="user.orders" class="mat-elevation-z8">
+  
+        <!-- Naslov -->
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Naslov</th>
+          <td mat-cell *matCellDef="let element"> {{ element.movieTitle }} </td>
+        </ng-container>
+  
+        <!-- Ocena -->
+        <ng-container matColumnDef="movieRating">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Ocena</th>
+          <td mat-cell *matCellDef="let element" class="center-text"> {{ element.movieRating }} </td>
+        </ng-container>
+  
+        <!-- Datum -->
+        <ng-container matColumnDef="reservationDate">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Datum</th>
+          <td mat-cell *matCellDef="let element" class="center-text"> {{ element.reservationDate | date:'dd/MM/yyyy' }} </td>
+        </ng-container>
+
+        <!-- Vreme -->
+        <ng-container matColumnDef="reservationTime">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Vreme projekcije</th>
+          <td mat-cell *matCellDef="let element" class="center-text"> {{ element.reservationTime }} </td>
+        </ng-container>
+  
+        <!-- Količina -->
+        <ng-container matColumnDef="ticketVolume">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Količina</th>
+          <td mat-cell *matCellDef="let element" class="center-text"> {{ element.ticketVolume }} </td>
+        </ng-container>
+  
+        <!-- Cena karte -->
+        <ng-container matColumnDef="ticketPrice">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Cena karte</th>
+          <td mat-cell *matCellDef="let element" class="center-text">
+            {{ element.ticketPrice }} RSD
+          </td>
+        </ng-container>
+  
+        <!-- Ukupno -->
+        <ng-container matColumnDef="totalPrice">
+          <th mat-header-cell *matHeaderCellDef class="center-text"> Ukupno</th>
+          <td mat-cell *matCellDef="let element" class="center-text">
+            {{ element.totalPrice }} RSD
+          </td>
+        </ng-container>
+  
+        <!-- Akcije -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="center-text">
+            <i class="fa-solid fa-location-arrow"></i> Akcije
+          </th>
+          <td mat-cell *matCellDef="let element" class="actions">
+            <a mat-button [routerLink]="['/detalji/', element.shortUrl]">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Detalji
+            </a>
+            <div *ngIf="element.status === 'ordered'">
+              <button type="button" mat-button (click)="doPay(element)">
+                <i class="fa-solid fa-cart-shopping"></i> Plati
+              </button>
+              <button type="button" mat-button (click)="doCancel(element)">
+                <i class="fa-solid fa-ban"></i> Otkaži
+              </button>
+            </div>
+            <div *ngIf="element.status === 'paid' && element.rating == null">
+              <p> <i class="fa-solid fa-check"></i>  Plaćeno</p>
+            </div>
+            <div *ngIf="element.status === 'canceled' && element.rating == null">
+              <p> <i class="fa-solid fa-check"></i>  Otkazano</p>
+            </div>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+  
